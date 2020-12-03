@@ -1,0 +1,10 @@
+[
+    "scss",
+    "cssmodules",
+    "proptypes",
+    "notest",
+    "jsx",
+    {
+        "output": "src/components"
+    }
+]

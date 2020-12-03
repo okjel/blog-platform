@@ -9,8 +9,14 @@
 body {
   box-sizing: border-box;
   font-family: 'Open Sans', sans-serif;
+  background-color: black !important;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+.ant-pagination {
+  display: flex;
+  justify-content: center;
 }

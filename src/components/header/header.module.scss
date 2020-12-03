@@ -1,0 +1,46 @@
+.container {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  gap: 20px;
+
+  background-color: #fff;
+}
+
+a {
+  color: black !important;
+}
+
+.logo {
+  margin-right: auto;
+}
+
+.s-in,
+.s-up {
+  transition: 0.3s;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.s-in {
+  &:hover {
+    background-color: #f6f6f6;
+  }
+
+  &:active {
+    background-color: #ddd;
+  }
+}
+
+.s-up {
+  border: 1px solid #52c41a;
+  color: #52c41a !important;
+
+  &:hover {
+    background-color: #edf9e8;
+  }
+
+  &:active {
+    background-color: #dcf3d1;
+  }
+}

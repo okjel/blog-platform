@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import reduxThunk from 'redux-thunk';
 import reducer from './reducer';
 import './index.scss';
+import 'antd/dist/antd.css';
 import App from './components/app';
 
 const composeEnhancers =
