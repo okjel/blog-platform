@@ -9,10 +9,16 @@ const Header = () => {
       <Link className={styles.logo} to="/">
         Realworld Blog
       </Link>
+      <Link className={styles['s-in']} to="/article">
+        ARTICLE
+      </Link>
       <Link className={styles['s-in']} to="/list">
+        LIST
+      </Link>
+      <Link className={styles['s-in']} to="/sign-in">
         Sign In
       </Link>
-      <Link className={styles['s-up']} to="/article">
+      <Link className={styles['s-up']} to="/sign-up">
         Sign Up
       </Link>
     </div>

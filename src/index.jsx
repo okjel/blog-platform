@@ -4,9 +4,10 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import reduxThunk from 'redux-thunk';
 import reducer from './reducer';
+import 'normalize.css';
 import './index.scss';
 import 'antd/dist/antd.css';
-import App from './components/app';
+import App from './components/App';
 
 const composeEnhancers =
   typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__

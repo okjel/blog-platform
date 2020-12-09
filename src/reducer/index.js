@@ -1,7 +1,6 @@
-export default (state = {}, action) => {
-  if (action.type === 'SET_TEST') {
-    return { ...state };
-  }
+import { combineReducers } from 'redux';
+import articles from './articles';
 
-  return state;
-};
+export default combineReducers({
+  articles,
+});
