@@ -12,8 +12,8 @@ import ArticleItem from '../ArticleItem';
 
 const { Title } = Typography;
 
-const ArticleSingle = ({ id, single, isLoading, getArticleSingle }) => {
-  console.log('IDDDD', id);
+const ArticleSingle = ({ id, single, isLoading, setIsLoading, getArticleSingle }) => {
+  console.log('single', single);
 
   const memoGetArticleSingle = useCallback(() => getArticleSingle(id), [getArticleSingle, id]);
 
@@ -40,6 +40,7 @@ ArticleSingle.propTypes = {
   id: PropTypes.string.isRequired,
   single: PropTypes.objectOf(Object).isRequired,
   isLoading: PropTypes.bool.isRequired,
+  setIsLoading: PropTypes.func.isRequired,
   getArticleSingle: PropTypes.func.isRequired,
 };
 

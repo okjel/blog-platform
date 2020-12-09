@@ -1,6 +1,12 @@
 import actionTypes from '../actions/actionTypes';
 
-const initialState = { items: [], single: {}, articlesCount: 0, isLoading: true, isError: false };
+const initialState = {
+  items: [],
+  single: { title: '', tagList: [], author: {} },
+  articlesCount: 0,
+  isLoading: true,
+  isError: false,
+};
 
 export default function articles(state = initialState, action) {
   switch (action.type) {
