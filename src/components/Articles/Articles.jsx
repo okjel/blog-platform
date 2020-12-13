@@ -18,8 +18,8 @@ const Articles = ({ articles, isLoading, articlesCount, getArticles }) => {
     <List
       dataSource={articles}
       renderItem={(item) => (
-        <List.Item>
-          <ArticleItem key={item.slug} data={item} />
+        <List.Item key={item.slug}>
+          <ArticleItem data={item} />
         </List.Item>
       )}
       split={false}

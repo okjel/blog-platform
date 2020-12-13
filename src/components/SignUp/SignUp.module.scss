@@ -53,3 +53,13 @@
 .link {
   color: #1890ff;
 }
+
+.error {
+  border-color: #f5222d;
+  color: #f5222d;
+  margin-bottom: 12px;
+}
+
+.input.error {
+  margin-bottom: 0;
+}

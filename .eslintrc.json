@@ -17,7 +17,6 @@
         "some": [ "nesting", "id" ]
       }
     }],
-    "no-unused-vars": "off",
     "curly": ["error"],
     "max-depth": ["warn", 4],
     "id-length": ["warn", { "exceptions": ["i", "j", "_"], "min": 2 }],

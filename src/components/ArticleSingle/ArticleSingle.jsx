@@ -13,8 +13,6 @@ import ArticleItem from '../ArticleItem';
 const { Title } = Typography;
 
 const ArticleSingle = ({ id, single, isLoading, setIsLoading, getArticleSingle }) => {
-  console.log('single', single);
-
   const memoGetArticleSingle = useCallback(() => getArticleSingle(id), [getArticleSingle, id]);
 
   useEffect(() => {

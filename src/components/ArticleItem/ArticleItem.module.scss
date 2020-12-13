@@ -12,7 +12,7 @@
 
 .content {
   margin-right: auto;
-  max-width: 70%;
+  max-width: 60%;
 }
 
 .row {
@@ -45,12 +45,18 @@
 .likes {
   display: flex;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .icon {
   font-size: 18px;
-  margin-right: 4px;
   height: 1em !important;
+}
+
+.iconFavorite {
+  font-size: 18px;
+  height: 1em !important;
+  color: tomato;
 }
 
 .tags {
@@ -59,8 +65,63 @@
 
 .extra {
   display: flex;
+  flex-wrap: wrap;
   flex-shrink: 0;
-  max-width: 30%;
+  max-width: 40%;
+  justify-content: flex-end;
+}
+
+.buttons {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+
+  padding: 10px 0;
+  gap: 10px;
+}
+
+.btn {
+  background-color: white;
+  transition: 0.3s;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btnDanger {
+  border: 1px solid #f5222d;
+  color: #f5222d !important;
+
+  &:hover {
+    background-color: #fef8f8;
+  }
+
+  &:active {
+    background-color: #fee8ea;
+  }
+}
+
+.btnEdit {
+  border: 1px solid #52c41a;
+  color: #52c41a !important;
+
+  &:hover {
+    background-color: #edf9e8;
+  }
+
+  &:active {
+    background-color: #dcf3d1;
+  }
+}
+
+.btnLike {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border: 0;
+  cursor: pointer;
+  margin-right: 4px;
 }
 
 .full-name {

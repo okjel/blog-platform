@@ -18,7 +18,8 @@
 }
 
 .s-in,
-.s-up {
+.s-up,
+.l-out {
   transition: 0.3s;
   padding: 10px;
   border-radius: 5px;
@@ -45,4 +46,23 @@
   &:active {
     background-color: #dcf3d1;
   }
+}
+
+.l-out {
+  border: 1px solid black;
+  color: black !important;
+  background-color: white;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #f6f6f6;
+  }
+
+  &:active {
+    background-color: #ddd;
+  }
+}
+
+.full-name {
+  margin-bottom: 0 !important;
 }
