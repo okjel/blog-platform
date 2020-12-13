@@ -1,18 +1,12 @@
 import React, { useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Space, Tag, Typography } from 'antd';
-import { Link } from 'react-router-dom';
-import { HeartOutlined } from '@ant-design/icons';
-import avatarImg from '../../images/avatar.png';
 import styles from './ArticleSingle.module.scss';
 import * as actions from '../../actions/apiArticles';
 import Loader from '../Loader';
 import ArticleItem from '../ArticleItem';
 
-const { Title } = Typography;
-
-const ArticleSingle = ({ id, single, isLoading, setIsLoading, getArticleSingle }) => {
+const ArticleSingle = ({ id, single, isLoading, getArticleSingle }) => {
   const memoGetArticleSingle = useCallback(() => getArticleSingle(id), [getArticleSingle, id]);
 
   useEffect(() => {
@@ -38,7 +32,6 @@ ArticleSingle.propTypes = {
   id: PropTypes.string.isRequired,
   single: PropTypes.objectOf(Object).isRequired,
   isLoading: PropTypes.bool.isRequired,
-  setIsLoading: PropTypes.func.isRequired,
   getArticleSingle: PropTypes.func.isRequired,
 };
 
