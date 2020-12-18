@@ -7,6 +7,16 @@ export const setError = (error) => {
   return { type: actionTypes.setErrorAuth, payload: error };
 };
 
+const errorHandler = (error, dispatch) => {
+  dispatch(setError(error.errors || error));
+
+  if (error.message) {
+    notification.error({
+      message: `Произошла ошибка: ${error.message}`,
+    });
+  }
+};
+
 export const setIsLoading = (value) => ({ type: actionTypes.setIsLoadingAuth, payload: value });
 
 export const signUp = (username, email, password) => async (dispatch) => {
@@ -17,7 +27,7 @@ export const signUp = (username, email, password) => async (dispatch) => {
     LocalStorageService.setUser(response);
     dispatch(setIsLoading(false));
   } catch (error) {
-    dispatch(setError(error.errors));
+    errorHandler(error, dispatch);
   }
 };
 
@@ -29,7 +39,7 @@ export const signIn = (email, password) => async (dispatch) => {
     LocalStorageService.setUser(response);
     dispatch(setIsLoading(false));
   } catch (error) {
-    dispatch(setError(error.errors));
+    errorHandler(error, dispatch);
   }
 };
 
@@ -44,7 +54,7 @@ export const edit = (data) => async (dispatch) => {
       message: 'Профиль обновлён',
     });
   } catch (error) {
-    dispatch(setError(error.errors));
+    errorHandler(error, dispatch);
   }
 };
 
@@ -53,6 +63,6 @@ export const logOut = () => async (dispatch) => {
     dispatch({ type: actionTypes.logOut });
     LocalStorageService.clear();
   } catch (error) {
-    dispatch(setError(error.errors));
+    errorHandler(error, dispatch);
   }
 };
