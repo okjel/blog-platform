@@ -2,4 +2,25 @@
   margin: 0 auto;
   padding: 20px;
   width: 100%;
+
+  @media (max-width: 576px) {
+    margin: 0 auto;
+    max-width: 320px;
+  }
+}
+
+.item {
+  @media (max-width: 576px) {
+    margin: 0 auto;
+    width: 280px;
+  }
+}
+
+:global {
+  .ant-pagination-item,
+  .ant-pagination-prev {
+    @media (max-width: 576px) {
+      margin: 0 !important;
+    }
+  }
 }

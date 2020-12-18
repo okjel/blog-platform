@@ -1,8 +1,7 @@
 import actionTypes from '../actions/actionTypes';
 
 const initialState = {
-  items: [],
-  single: { title: '', tagList: [], author: {}, createdAt: 0 },
+  items: [{ title: '', tagList: [], author: {}, createdAt: 0 }],
   error: {},
   articlesCount: 0,
   isLoading: false,
@@ -21,11 +20,11 @@ export default function articles(state = initialState, action) {
     case actionTypes.setArticleSingle:
       return {
         ...state,
-        single: { ...action.payload },
+        items: [action.payload],
       };
 
     case actionTypes.setIsError:
-      return { ...state, isError: action.payload };
+      return { ...state, isError: action.payload, isLoading: false };
 
     case actionTypes.setIsLoading:
       return { ...state, isLoading: action.payload };
@@ -42,16 +41,6 @@ export default function articles(state = initialState, action) {
               }
             : item
         ),
-        single:
-          state.single.slug === action.payload.slug
-            ? {
-                ...state.single,
-                favorited: !state.single.favorited,
-                favoritesCount: state.single.favorited
-                  ? state.single.favoritesCount - 1
-                  : +state.single.favoritesCount + 1,
-              }
-            : state.single,
       };
 
     default:

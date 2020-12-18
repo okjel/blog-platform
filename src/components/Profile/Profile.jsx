@@ -20,6 +20,7 @@ const Profile = ({ edit, isLogIn, isLoading, error, user }) => {
   }
 
   const onSubmit = (data) => {
+    if (isLoading) return;
     const sendData = Object.entries(data)
       .filter((el) => el[1])
       .reduce((acc, item) => ({ ...acc, [item[0]]: item[1] }), {});

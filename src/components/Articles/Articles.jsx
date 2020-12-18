@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { List } from 'antd';
 import PropTypes from 'prop-types';
@@ -10,6 +10,8 @@ import Loader from '../Loader';
 const Articles = ({ articles, isLoading, articlesCount, getArticles }) => {
   const pageSize = 20;
 
+  const [current, setCurrent] = useState(1);
+
   useEffect(() => {
     getArticles();
   }, [getArticles]);
@@ -18,15 +20,18 @@ const Articles = ({ articles, isLoading, articlesCount, getArticles }) => {
     <List
       dataSource={articles}
       renderItem={(item) => (
-        <List.Item key={item.slug}>
+        <List.Item key={item.slug} className={styles.item}>
           <ArticleItem data={item} />
         </List.Item>
       )}
       split={false}
       pagination={{
+        showQuickJumper: false,
+        current,
         hideOnSinglePage: true,
         onChange: (page) => {
           getArticles(page * pageSize);
+          setCurrent(page);
         },
         total: articlesCount,
         defaultPageSize: pageSize,

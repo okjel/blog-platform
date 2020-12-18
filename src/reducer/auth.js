@@ -1,18 +1,14 @@
 import actionTypes from '../actions/actionTypes';
 import LocalStorageService from '../services/LocalStorageService';
+import notificationError from '../shared/notification';
 
-const localStorageUser = LocalStorageService.getUser();
+let user;
 
-const user = localStorageUser
-  ? localStorageUser.user
-  : {
-      id: null,
-      email: null,
-      username: null,
-      bio: null,
-      image: null,
-      token: null,
-    };
+try {
+  user = LocalStorageService.getUser();
+} catch (err) {
+  notificationError(err.message);
+}
 
 const initialState = {
   user,

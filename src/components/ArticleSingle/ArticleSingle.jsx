@@ -6,7 +6,7 @@ import * as actions from '../../actions/apiArticles';
 import Loader from '../Loader';
 import ArticleItem from '../ArticleItem';
 
-const ArticleSingle = ({ id, single, isLoading, getArticleSingle }) => {
+const ArticleSingle = ({ id, items, isLoading, getArticleSingle }) => {
   const memoGetArticleSingle = useCallback(() => getArticleSingle(id), [getArticleSingle, id]);
 
   useEffect(() => {
@@ -23,21 +23,21 @@ const ArticleSingle = ({ id, single, isLoading, getArticleSingle }) => {
 
   return (
     <div className={styles.container}>
-      <ArticleItem data={single} isSingle />
+      <ArticleItem data={items[0]} isSingle />
     </div>
   );
 };
 
 ArticleSingle.propTypes = {
   id: PropTypes.string.isRequired,
-  single: PropTypes.objectOf(Object).isRequired,
+  items: PropTypes.arrayOf(Object).isRequired,
   isLoading: PropTypes.bool.isRequired,
   getArticleSingle: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
   return {
-    single: state.articles.single,
+    items: state.articles.items,
     isLoading: state.articles.isLoading,
   };
 };

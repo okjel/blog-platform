@@ -1,6 +1,6 @@
 import { notification } from 'antd';
 import actionTypes from './actionTypes';
-import ConduitApiService from '../services/ConduitApiService';
+import AuthService from '../services/AuthService';
 import LocalStorageService from '../services/LocalStorageService';
 
 export const setError = (error) => {
@@ -12,7 +12,7 @@ export const setIsLoading = (value) => ({ type: actionTypes.setIsLoadingAuth, pa
 export const signUp = (username, email, password) => async (dispatch) => {
   try {
     dispatch(setIsLoading(true));
-    const response = await ConduitApiService.signUp(username, email, password);
+    const response = await AuthService.signUp(username, email, password);
     dispatch({ type: actionTypes.setUser, payload: response });
     LocalStorageService.setUser(response);
     dispatch(setIsLoading(false));
@@ -24,7 +24,7 @@ export const signUp = (username, email, password) => async (dispatch) => {
 export const signIn = (email, password) => async (dispatch) => {
   try {
     dispatch(setIsLoading(true));
-    const response = await ConduitApiService.signIn(email, password);
+    const response = await AuthService.signIn(email, password);
     dispatch({ type: actionTypes.setUser, payload: response });
     LocalStorageService.setUser(response);
     dispatch(setIsLoading(false));
@@ -36,7 +36,7 @@ export const signIn = (email, password) => async (dispatch) => {
 export const edit = (data) => async (dispatch) => {
   try {
     dispatch(setIsLoading(true));
-    const response = await ConduitApiService.editProfile(data);
+    const response = await AuthService.editProfile(data);
     dispatch({ type: actionTypes.setUser, payload: response });
     LocalStorageService.setUser(response);
     dispatch(setIsLoading(false));

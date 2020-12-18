@@ -8,26 +8,27 @@ import SignIn from '../SignIn';
 import Profile from '../Profile';
 import NewArticle from '../NewArticle';
 import EditArticle from '../EditArticle';
+import routes from '../../shared/routes';
 
 const Main = () => {
   return (
     <div className={styles.container}>
-      <Route path="/" exact component={Articles} />
-      <Route path="/articles" exact component={Articles} />
+      <Route path={routes.root} exact component={Articles} />
+      <Route path={routes.articles} exact component={Articles} />
       <Route
-        path="/articles/:slug"
+        path={routes.article()}
         exact
         render={({ match }) => {
           const { slug } = match.params;
           return <ArticleSingle id={slug} />;
         }}
       />
-      <Route path="/sign-up" component={SignUp} />
-      <Route path="/sign-in" component={SignIn} />
-      <Route path="/profile" component={Profile} />
-      <Route path="/new-article" component={NewArticle} />
+      <Route path={routes.signUp} component={SignUp} />
+      <Route path={routes.signIn} component={SignIn} />
+      <Route path={routes.profile} component={Profile} />
+      <Route path={routes.newArticle} component={NewArticle} />
       <Route
-        path="/articles/:slug/edit"
+        path={routes.articleEdit()}
         render={({ match }) => {
           return <EditArticle slug={match.params.slug} />;
         }}

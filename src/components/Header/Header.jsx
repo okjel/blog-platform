@@ -4,31 +4,32 @@ import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { Space, Typography } from 'antd';
 import styles from './Header.module.scss';
-import toUrl from '../shared/urlConverter';
+import toUrl from '../../shared/urlConverter';
 import avatarImg from '../../images/avatar.png';
 import * as actions from '../../actions/auth';
+import routes from '../../shared/routes';
 
 const { Title } = Typography;
 
 const Header = ({ avatar, isLogIn, username, history, logOut }) => {
   const logOutHandler = () => {
     logOut();
-    history.push('/');
+    history.push(routes.root);
   };
 
   const avatarSrc = toUrl(avatar) || avatarImg;
 
   return (
     <div className={styles.container}>
-      <Link className={styles.logo} to="/">
+      <Link className={styles.logo} to={routes.root}>
         Realworld Blog
       </Link>
       {isLogIn ? (
         <>
-          <Link className={styles['s-up']} to="/new-article">
+          <Link className={styles['s-up']} to={routes.newArticle}>
             Create article
           </Link>
-          <Link to="/profile">
+          <Link to={routes.profile}>
             <Space>
               <div className="user-info">
                 <Title className={styles['full-name']} level={5}>
@@ -44,10 +45,10 @@ const Header = ({ avatar, isLogIn, username, history, logOut }) => {
         </>
       ) : (
         <>
-          <Link className={styles['s-in']} to="/sign-in">
+          <Link className={styles['s-in']} to={routes.signIn}>
             Sign In
           </Link>
-          <Link className={styles['s-up']} to="/sign-up">
+          <Link className={styles['s-up']} to={routes.signUp}>
             Sign Up
           </Link>
         </>

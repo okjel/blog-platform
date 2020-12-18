@@ -1,7 +1,7 @@
 import { notification } from 'antd';
 import actionTypes from './actionTypes';
-import ConduitApiService from '../services/ConduitApiService';
-import notificationError from '../components/shared/error';
+import ArticleService from '../services/ArticleService';
+import notificationError from '../shared/notification';
 
 export const setIsError = () => {
   notificationError();
@@ -15,7 +15,7 @@ export const setFavorite = (value) => ({ type: actionTypes.setFavorite, payload:
 export const getArticles = (offset = 0) => async (dispatch) => {
   try {
     dispatch(setIsLoading(true));
-    const response = await ConduitApiService.getArticles(offset);
+    const response = await ArticleService.getArticles(offset);
     dispatch({ type: actionTypes.pushArticles, payload: response });
     dispatch(setIsLoading(false));
   } catch {
@@ -27,7 +27,7 @@ export const getArticles = (offset = 0) => async (dispatch) => {
 export const getArticleSingle = (id) => async (dispatch) => {
   try {
     dispatch(setIsLoading(true));
-    const response = await ConduitApiService.getArticleSingle(id);
+    const response = await ArticleService.getArticleSingle(id);
     dispatch({ type: actionTypes.setArticleSingle, payload: response.article });
     dispatch(setIsLoading(false));
   } catch {
@@ -39,7 +39,7 @@ export const getArticleSingle = (id) => async (dispatch) => {
 export const createArticle = (data) => async (dispatch) => {
   try {
     dispatch(setIsLoading(true));
-    await ConduitApiService.createArticle(data);
+    await ArticleService.createArticle(data);
     dispatch(setIsLoading(false));
     notification.success({
       message: 'Статья создана',
@@ -53,7 +53,7 @@ export const createArticle = (data) => async (dispatch) => {
 export const editArticle = (data, slug) => async (dispatch) => {
   try {
     dispatch(setIsLoading(true));
-    await ConduitApiService.editArticle(data, slug);
+    await ArticleService.editArticle(data, slug);
     dispatch(setIsLoading(false));
     notification.success({
       message: 'Статья обновлена',
@@ -67,7 +67,7 @@ export const editArticle = (data, slug) => async (dispatch) => {
 export const deleteArticle = (slug) => async (dispatch) => {
   try {
     dispatch(setIsLoading(true));
-    await ConduitApiService.deleteArticle(slug);
+    await ArticleService.deleteArticle(slug);
     dispatch(setIsLoading(false));
     notification.success({
       message: 'Статья удалена',
@@ -81,8 +81,8 @@ export const deleteArticle = (slug) => async (dispatch) => {
 export const toggleFavorite = (slug, value) => async (dispatch) => {
   try {
     dispatch(setFavorite({ slug }));
-    if (value) await ConduitApiService.unFavoriteArticle(slug);
-    if (!value) await ConduitApiService.favoriteArticle(slug);
+    if (value) await ArticleService.unFavoriteArticle(slug);
+    if (!value) await ArticleService.favoriteArticle(slug);
   } catch {
     dispatch(setIsError());
     setTimeout(() => toggleFavorite(slug, value), 2000);

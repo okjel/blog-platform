@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Button } from 'antd';
 import cx from 'classnames';
-import { Redirect } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import * as actions from '../../actions/apiArticles';
 import styles from './NewArticle.module.scss';
+import routes from '../../shared/routes';
 
-const NewArticle = ({ article, error, isLogIn, isLoading, createArticle, editArticle }) => {
+const NewArticle = ({ article, error, isLogIn, isLoading, createArticle, editArticle, history }) => {
   const { register, handleSubmit, errors } = useForm();
   const [tags, setTags] = useState(article.tagList || []);
   const [newTag, setNewTag] = useState('');
@@ -29,14 +30,17 @@ const NewArticle = ({ article, error, isLogIn, isLoading, createArticle, editArt
   };
 
   const onSubmit = (data) => {
+    if (isLoading) return;
     if (article.title) {
       const sendData = { article: { ...data, tagList: tags.filter((el) => el) } };
       editArticle(sendData, article.slug);
+      history.push(routes.root);
       return;
     }
 
     const sendData = { article: { ...data, tagList: tags.filter((el) => el) } };
     createArticle(sendData);
+    history.push(routes.root);
     reset();
   };
 
@@ -158,6 +162,7 @@ NewArticle.propTypes = {
   createArticle: PropTypes.func.isRequired,
   editArticle: PropTypes.func.isRequired,
   article: PropTypes.objectOf(Object),
+  history: PropTypes.objectOf(Object).isRequired,
 };
 
 NewArticle.defaultProps = {
@@ -172,4 +177,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, actions)(NewArticle);
+export default withRouter(connect(mapStateToProps, actions)(NewArticle));
